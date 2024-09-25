@@ -11,13 +11,19 @@ public class taskCli {
             case "add":
                 System.out.println("ingreso add " );
                 TaskClass.IngresarTask(args[1]);
-
                 break;
             case "update":
                 System.out.println("ingreso Update");
+                TaskClass.updateTask(Integer.parseInt(args[1]) , args[2],"");
+                break;
+            case "mark-in-progress":
+                TaskClass.updateTask(Integer.parseInt(args[1]),"", "in-progress");
                 break;
             case "list":
                 TaskClass.listTask();
+                break;
+            case "mark-done":
+                TaskClass.updateTask(Integer.parseInt(args[1]),"", "done");
         }
 
     }

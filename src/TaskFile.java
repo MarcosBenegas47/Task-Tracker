@@ -7,18 +7,16 @@ public class TaskFile {
 
     static String pathArchivo = "archivo.json";
 
-    public static void saveTask(Task task, List<Task> listaTask)   {
+    public static void saveTask(  List<Task> listaTask)   {
        // System.out.println(task);
         //List<Task> listaTask = new ArrayList<Task>();
         String archivo = pathArchivo;
         try {
 //            File file = new File(archivo);
 //            if(file.exists()){
-                listaTask = readTask();
+              //  listaTask = readTask();
             //}
 
-
-            listaTask.add(task);
 
 
             FileWriter fileWriter = new FileWriter(archivo);
@@ -52,7 +50,7 @@ public class TaskFile {
             }
             String json = contenido.toString().trim();
           //  System.out.println(json);
-            if(json.startsWith("[")&& json.endsWith("]")){
+            if(json.startsWith("[")&& json.endsWith("]") && json !="[]"){
                 json = json.substring(1,json.length()-1);
                 String[] objetoJson = json.split("},");
                 for(String objeto: objetoJson){

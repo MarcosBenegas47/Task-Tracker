@@ -12,13 +12,16 @@ public class TaskClass  {
         DateFormat dateFormat = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss");
         Date date = new Date();
 
-
         List<Task> listTask = TaskFile.readTask();
         int id = generateId(listTask);
-System.out.println(dateFormat.format(date));
-        //listaTask.add(new Task(1, descripcion, "in-progress", dateFormat.format(date),""));
-        TaskFile.saveTask((new Task(id,descripcion, "", dateFormat.format(date),"")), listTask );
-        //System.out.println(listaTask);
+
+        //System.out.println(dateFormat.format(date));
+
+        listTask.add(new Task(id, descripcion, "", dateFormat.format(date),""));
+
+        TaskFile.saveTask( listTask );
+
+        System.out.println("Task added successfully (ID: "+id+")");
 
 
     }
@@ -29,13 +32,32 @@ System.out.println(dateFormat.format(date));
         }
         int index = lista.size()-1;
         Task ultimo = lista.get(index);
-        System.out.println("el uiltimo id es  "+ultimo.getId());
+        //System.out.println("el uiltimo id es  "+ultimo.getId());
         return ultimo.getId()+1;
 
 
     }
 
-    public static void updateTask(int id){
+    public static void updateTask(int id, String descripcion, String statusUpdate){
+        List<Task> listTask = TaskFile.readTask();
+        DateFormat dateFormat = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss");
+        Date date = new Date();
+        for(Task task:listTask){
+            if(task.getId() == id){
+                if(descripcion != ""){
+                    task.setDescription(descripcion);
+                    task.setUpdatedAt( dateFormat.format(date));
+                }
+
+                if(statusUpdate != ""){
+                    task.setStatus(statusUpdate);
+                    task.setUpdatedAt( dateFormat.format(date));
+
+                }
+            }
+        }
+        TaskFile.saveTask(listTask);
+        System.out.println("Task updated successfully");
 
     }
     public static void listTask(){
@@ -51,4 +73,6 @@ System.out.println(dateFormat.format(date));
         }
 
     }
+
+
 }
