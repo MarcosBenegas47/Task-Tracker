@@ -49,10 +49,12 @@ public class TaskFile {
                contenido.append(element);
             }
             String json = contenido.toString().trim();
-          //  System.out.println(json);
-            if(json.startsWith("[")&& json.endsWith("]") && json !="[]"){
+
+            if(json.startsWith("[")&& json.endsWith("]")){
                 json = json.substring(1,json.length()-1);
+                if(json.isEmpty()) return lista;
                 String[] objetoJson = json.split("},");
+
                 for(String objeto: objetoJson){
                     if(!objeto.endsWith("}")){
                         objeto = objeto + "}";
@@ -60,7 +62,6 @@ public class TaskFile {
 
                     Task task = Task.fromJson(objeto);
                     lista.add(task);
-                  //  System.out.println(task);
                 }
             }
 

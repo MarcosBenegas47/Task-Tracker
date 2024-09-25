@@ -3,11 +3,12 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
+import java.util.Objects;
+import java.util.stream.Collectors;
 
 public class TaskClass  {
     public static void IngresarTask(String descripcion){
 
-        System.out.println(descripcion);
 
         DateFormat dateFormat = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss");
         Date date = new Date();
@@ -17,7 +18,7 @@ public class TaskClass  {
 
         //System.out.println(dateFormat.format(date));
 
-        listTask.add(new Task(id, descripcion, "", dateFormat.format(date),""));
+        listTask.add(new Task(id, descripcion, "todo", dateFormat.format(date),""));
 
         TaskFile.saveTask( listTask );
 
@@ -60,17 +61,27 @@ public class TaskClass  {
         System.out.println("Task updated successfully");
 
     }
-    public static void listTask(){
+    public static void listTask(String by){
         List<Task> lista = TaskFile.readTask();
-        System.out.format("+---------+--------------------------+-----------------+---------------------+---------------------+%n");
-        System.out.format("|   id    |       description        |      status     |      createdAt      |      updatedAt      |%n");
-        System.out.format("+---------+--------------------------+-----------------+---------------------+---------------------+%n");
+        System.out.format("+----+--------------------------+-----------------+---------------------+---------------------+%n");
+        System.out.format("| id |       description        |      status     |      createdAt      |      updatedAt      |%n");
+        System.out.format("+----+--------------------------+-----------------+---------------------+---------------------+%n");
 
-        String leftAlignment = "| %-7s | %-24s | %-15s | %-19s | %-19s |%n";
-        for(Task task:lista){
+        List<Task> listFilter = by == null || by.trim().isEmpty() ? lista:
+                lista.stream().filter(task -> task.getStatus().equals(by)).collect(Collectors.toList());
+
+        String leftAlignment = "| %-2s | %-24s | %-15s | %-19s | %-19s |%n";
+        for(Task task:listFilter){
+
             System.out.format(leftAlignment,task.getId(), task.getDescription(), task.getStatus(), task.getCreatedAt(), task.getUpdatedAt() );
-            System.out.format("+---------+--------------------------+-----------------+---------------------+---------------------+%n");
+            System.out.format("+----+--------------------------+-----------------+---------------------+---------------------+%n");
+
         }
+    }
+    public static void deleteTask(int id ){
+        List<Task> lista = TaskFile.readTask();
+        lista.removeIf(task -> task.getId() ==id);
+        TaskFile.saveTask(lista);
 
     }
 

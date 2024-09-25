@@ -20,10 +20,18 @@ public class taskCli {
                 TaskClass.updateTask(Integer.parseInt(args[1]),"", "in-progress");
                 break;
             case "list":
-                TaskClass.listTask();
+                String filter= "";
+                if(args.length > 1){
+                    filter = args[1];
+                }
+                TaskClass.listTask(filter);
                 break;
             case "mark-done":
                 TaskClass.updateTask(Integer.parseInt(args[1]),"", "done");
+                break;
+            case "delete":
+                TaskClass.deleteTask(Integer.parseInt(args[1]));
+                break;
         }
 
     }
