@@ -12,101 +12,76 @@ _This is a simple command-line interface(CLI) application for managing tasks._
 - List all tasks that are in progress
 
 
-### Pre-requisitos 📋
 
-_Que cosas necesitas para instalar el software y como instalarlas_
+## How to run 🔧
+### Prerequisites
+
+- Java Development Kit (JDK) installed on your machine (version 8 or higher).
+- Ensure that javac and java are available in your system's PATH.
+### Compilation
+
+1. Open a terminal or command prompt.
+
+2. Navigate to the directory where taskCli.java is located.
+
+_Compile the Java file using the following command:_
+
+bash
+Copiar código
 
 ```
-Da un ejemplo
+javac taskCli.java
+```
+This will generate a taskCli.class file in the same directory.
+
+
+### Running the Program ⚙️
+
+
+_After compiling, you can run the program using various commands, depending on the desired action. Below are examples of how to use it:_
+
+
+1. Adding a new task:
+```
+java taskCli add "Task 1"
 ```
 
-### How to run 🔧
-
-_Una serie de ejemplos paso a paso que te dice lo que debes ejecutar para tener un entorno de desarrollo ejecutandose_
-
-_Dí cómo será ese paso_
+2. Updating an existing task:
 
 ```
-javac taskCki.java
-java taskCli <Comand> argument
+java taskCli update <id> "Buy groceries"
+```
 
+3. Deleting a task:
+
+```
+java taskCli delete <id>
+```
+4. Marking a task as "In Progress":
+```
+java taskCli mark-in-progress <id>
+```
+5. Marking a task as "Done":
+```
+java taskCli mark-done <id>
+```
+6. Listing all tasks:
+```
 java taskCli list
-java
+```
+7. Listing tasks by status:
+
+- To list tasks marked as "Done":
+```
+java taskCli list done
 ```
 
-_Y repite_
-
+- To list tasks marked as "To Do":
 ```
-hasta finalizar
-```
-
-_Finaliza con un ejemplo de cómo obtener datos del sistema o como usarlos para una pequeña demo_
-
-## Ejecutando las pruebas ⚙️
-
-_Explica como ejecutar las pruebas automatizadas para este sistema_
-
-### Analice las pruebas end-to-end 🔩
-
-_Explica que verifican estas pruebas y por qué_
-
-```
-Da un ejemplo
+java taskCli list todo
 ```
 
-### Y las pruebas de estilo de codificación ⌨️
-
-_Explica que verifican estas pruebas y por qué_
-
+- To list tasks marked as "In Progress":
 ```
-Da un ejemplo
+java taskCli list in-progress
 ```
-
-## Despliegue 📦
-
-_Agrega notas adicionales sobre como hacer deploy_
-
-## Construido con 🛠️
-
-_Menciona las herramientas que utilizaste para crear tu proyecto_
-
-* [Dropwizard](http://www.dropwizard.io/1.0.2/docs/) - El framework web usado
-* [Maven](https://maven.apache.org/) - Manejador de dependencias
-* [ROME](https://rometools.github.io/rome/) - Usado para generar RSS
-
-## Contribuyendo 🖇️
-
-Por favor lee el [CONTRIBUTING.md](https://gist.github.com/villanuevand/xxxxxx) para detalles de nuestro código de conducta, y el proceso para enviarnos pull requests.
-
-## Wiki 📖
-
-Puedes encontrar mucho más de cómo utilizar este proyecto en nuestra [Wiki](https://github.com/tu/proyecto/wiki)
-
-## Versionado 📌
-
-Usamos [SemVer](http://semver.org/) para el versionado. Para todas las versiones disponibles, mira los [tags en este repositorio](https://github.com/tu/proyecto/tags).
-
-## Autores ✒️
-
-_Menciona a todos aquellos que ayudaron a levantar el proyecto desde sus inicios_
-
-* **Andrés Villanueva** - *Trabajo Inicial* - [villanuevand](https://github.com/villanuevand)
-* **Fulanito Detal** - *Documentación* - [fulanitodetal](#fulanito-de-tal)
-
-También puedes mirar la lista de todos los [contribuyentes](https://github.com/your/project/contributors) quíenes han participado en este proyecto. 
-
-## Licencia 📄
-
-Este proyecto está bajo la Licencia (Tu Licencia) - mira el archivo [LICENSE.md](LICENSE.md) para detalles
-
-## Expresiones de Gratitud 🎁
-
-* Comenta a otros sobre este proyecto 📢
-* Invita una cerveza 🍺 o un café ☕ a alguien del equipo. 
-* Da las gracias públicamente 🤓.
-* Dona con cripto a esta dirección: `0xf253fc233333078436d111175e5a76a649890000`
-* etc.
-
-
-
----
