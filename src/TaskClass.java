@@ -80,8 +80,15 @@ public class TaskClass  {
     }
     public static void deleteTask(int id ){
         List<Task> lista = TaskFile.readTask();
+
+        if(!lista.stream().anyMatch(task -> task.getId() ==id )){
+            System.out.println("Error: Task with ID " + id + " does not exist.");
+            return;
+        } ;
+
         lista.removeIf(task -> task.getId() ==id);
         TaskFile.saveTask(lista);
+        System.out.println("Task Deleted successfully");
 
     }
 
